@@ -1,12 +1,8 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import requests
 from bs4 import BeautifulSoup
 import re
+import time
+import csv
 
 # Setting base URL
 baseurl = "https://www.springer.com"
@@ -25,7 +21,7 @@ headers = {
 
 # Create an empty list of books
 books = []
-for page in range(1,4):
+for page in range(1, 501):
     #URL format to obtain the list of books in the pages. In this case there are only 3.
     url = baseurl + "/la/product-search/discipline?disciplineId=computerscience&facet-lan=lan__en&facet-type=type__book&page={}&returnUrl=la%2Fcomputer-science".format(page)
     # Request page content from URL
@@ -34,11 +30,11 @@ for page in range(1,4):
     # Parse to html
     soup_fu = BeautifulSoup(k1,'html.parser')
 
-    # Get all disciplines
-    first_booklist_page = soup_fu.find_all("div",{"class":"result-type-book"})
+    # Get all items
+    book_items = soup_fu.find_all("div",{"class":"result-type-book"})
 
   
-    for book in first_booklist_page:
+    for book in book_items:
         # Format URL for getting book page content
         book_url = baseurl + book.a.get('href')
         # Get book page content
@@ -87,12 +83,13 @@ for page in range(1,4):
 
         # print(type(price_ebook))
         # print(type(price_hardcover))
+
         # Subtitle
-        subtitle = ''
-        if info.h2 is None:
-            subtitle = 'NA'
-        else: 
+        # subtitle = ''
+        try:
             subtitle = info.h2.get_text()
+        except:
+            subtitle=None
 
         # Topic
         topic = soup_book.find('a', attrs={'itemprop':'genre'}).get_text()
@@ -109,7 +106,6 @@ for page in range(1,4):
             pages = numberOfPages.get_text()    
 
         # Add elements of books to list
-        # Add elements of books to list
         books.append({
             'Page':page,
             'title': book.h4.a.string, 
@@ -121,11 +117,26 @@ for page in range(1,4):
             'hardcover-price': price_hardcover,
             'softcover-price': price_softcover,
             'print-price': price_print,
-            'print_ebook-price': price_print_ebook,
+            'print-ebook-price': price_print_ebook,
             'partial-url': book.a.get('href'),
             'authors': book.find('p', attrs={'class':'meta contributors book-contributors'}).get_text().strip()       
             })
+        
+    print('Page #{page} scrapped'.format(page=page))
+    time.sleep(20)
 
-for book in books:
+
+for book in books: 
     print(book)
 
+
+filename = 'books_data_springer.csv'
+
+with open(filename, 'w', newline='') as f:
+    w = csv.DictWriter(f, [ 'Page','title','subtitle','topic','isbn', 
+                            'pages', 'ebook-price', 'hardcover-price', 'softcover-price', 
+                            'print-price', 'print-ebook-price', 'partial-url', 'authors' ])
+    w.writeheader()
+
+    for book in books:
+        w.writerow(book)
