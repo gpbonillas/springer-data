@@ -104,12 +104,10 @@ for page in range(1, 101):
         
 
         # Pages
-        pages = 0
-        numberOfPages = soup_book.find('dd', attrs={'itemprop':'numberOfPages'})
-        if numberOfPages is None:
-            pages = 0
-        else: 
-            pages = numberOfPages.get_text()    
+        try:
+            numberOfPages = soup_book.find('dd', attrs={'itemprop':'numberOfPages'})
+        except:
+            numberOfPages = None  
 
         # Add elements of books to list
         books.append({
