@@ -7,18 +7,18 @@ Proyecto colaborativo para extraer un dataset desde el portal [Springer](https:/
 
 | Contribuciones   | Firma  |
 |------------------|--------|
-| Investigación previa  | L.A.T.G., G.P.B.S. |
-| Redacción de las respuestas  | L.A.T.G., G.P.B.S. |
-| Desarrollo código  | L.A.T.G., G.P.B.S.  |
+| Investigación previa  | Luis Arnaldo Torres González, Gabriel Patricio Bonilla Sanchez |
+| Redacción de las respuestas  | Luis Arnaldo Torres González, Gabriel Patricio Bonilla Sanchez |
+| Desarrollo código  | Luis Arnaldo Torres González, Gabriel Patricio Bonilla Sanchez  |
 
 ## Descripción de ficheros
 La estructura general del proyecto es la siguiente:
 
 * **src**: Esta carpeta contiene 3 archivos, según las siguientes indicaciones:
-  * **owner.json**: Respuesta JSON al momento de ejecutar el script owner.py
+  * **owner.json**: Respuesta JSON al momento de ejecutar el script `owner.py`
   * **owner.py**: Script que hace uso de la librería python-whois, lo que permite conocer el propietario de la página.
   * **scraper.py**: Script que contiene toda la lógica de extracción de los datos del portal de Springer.
-* **data**: Contiene el dataset books_data_springer.csv luego de haber ejecutado el script scraper.py
+* **data**: Contiene el dataset books_data_springer.csv
 * **docs**: Contiene la documentación referente al proyecto.
 * **LICENSE**: Archivo que contiene la declaración de la licencia usada para este proyecto. En este caso se ha usado la licencia MIT.
 * **README.md**: Archivo que contiene una breve descripción del proyecto
