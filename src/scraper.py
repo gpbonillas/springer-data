@@ -1,18 +1,15 @@
-# -*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
 import re
 import time
 import csv
 import sys
-
+import os.path
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-
 # Get the format type of the book content
 def get_number_of_formats(formats):
-
     list_of_formats = formats.find_all("span")
     if len(list_of_formats) == 2:
         return 5
@@ -42,15 +39,23 @@ def has_online_access(formats):
 
     return 0
 
-def save_to_csv(books):
-    filename = 'books_data_springer.csv'
+# Define method for save data to csv file
+def save_to_csv(books, filename):
+    path_to_file = 'data/' + filename
 
-    with open(filename, 'a+', newline='', encoding='utf-8') as f:
+    try:
+        fileEmpty = os.stat(path_to_file).st_size == 0
+    except:
+        fileEmpty = True
+
+    with open(path_to_file, 'a+', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, [ 'Page', 'title', 'topic', 'isbn', 'pages', 
                                 'year', 'online_access', 'format', 'editorial', 'ebook-price', 
                                 'hardcover-price', 'softcover-price', 'print-price', 'print-ebook-price', 'authors'])
-        w.writeheader()
-
+        
+        if fileEmpty:
+            w.writeheader()  # file doesn't exist yet, write headers
+        
         for book in books:
             w.writerow(book)
 
@@ -74,7 +79,7 @@ topics_param_get_url = "topic=I00001%2CI1200X%2CI12018%2CI12026%2CI12034%2CI1204
 
 # Create an empty list of books
 books = []
-for page in range(1, 2):
+for page in range(401, 501):
     #URL format to obtain the list of books in the pages. In this case there are only 3.
     url = baseurl + "/la/product-search/discipline?disciplineId=computerscience&facet-lan=lan__en&facet-type=type__book&page={}&returnUrl=la%2Fcomputer-science&{}".format(page, topics_param_get_url)
     print (url)
@@ -216,9 +221,4 @@ for book in books:
     print(book)
 
 # Call to save_to_csv method
-save_to_csv(books)
-
-
-
-
-
+save_to_csv(books, 'books_data_springer.csv')

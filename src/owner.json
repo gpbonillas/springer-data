@@ -1,0 +1,52 @@
+{
+  "domain_name": [
+    "SPRINGER.COM",
+    "springer.com"
+  ],
+  "registrar": "Eurodns S.A.",
+  "whois_server": "whois.eurodns.com",
+  "referral_url": null,
+  "updated_date": [
+    "2020-05-22 03:24:22",
+    "2020-05-22 05:36:31"
+  ],
+  "creation_date": [
+    "1997-05-29 04:00:00",
+    "2009-05-28 00:00:00"
+  ],
+  "expiration_date": [
+    "2021-05-28 04:00:00",
+    "2021-05-27 00:00:00"
+  ],
+  "name_servers": [
+    "PDNS1.ULTRADNS.NET",
+    "PDNS2.ULTRADNS.NET",
+    "PDNS3.ULTRADNS.ORG",
+    "PDNS4.ULTRADNS.ORG",
+    "PDNS5.ULTRADNS.INFO",
+    "PDNS6.ULTRADNS.CO.UK",
+    "pdns1.ultradns.net",
+    "pdns2.ultradns.net",
+    "pdns3.ultradns.org",
+    "pdns4.ultradns.org",
+    "pdns5.ultradns.info",
+    "pdns6.ultradns.co.uk"
+  ],
+  "status": [
+    "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+    "clientTransferProhibited http://www.icann.org/epp#clientTransferProhibited"
+  ],
+  "emails": [
+    "legal@eurodns.com",
+    "legalservices@eurodns.com",
+    "hostmaster@springernature.com"
+  ],
+  "dnssec": "unsigned",
+  "name": "Schipper Jaap",
+  "org": "Springer Nature B.V.",
+  "address": "van Godewijckstraat 30",
+  "city": "Dordrecht",
+  "state": null,
+  "zipcode": "3311 GX",
+  "country": "NL"
+}
