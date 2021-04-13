@@ -32,6 +32,9 @@ pip install beautifulsoup4
 pip install python-whois
 ```
 
+## Información adicional
+Para mayor información del proyecto visite la [Wiki Oficial](https://github.com/gpbonillas/springer-data/wiki)
+
 ## Publicación del dataset
 El DOI del dataset publicado en Zenodo es: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4683793.svg)](https://doi.org/10.5281/zenodo.4683793)
 
